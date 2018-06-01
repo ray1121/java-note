@@ -9,7 +9,7 @@ public class Hero {
            Hero garen =  new Hero();
            garen.name = "盖伦";
             
-           garen.copyright = "版权由Riot Games公司所有";
+           Hero.copyright = "版权由Riot Games公司所有";
             
            System.out.println(garen.name);
            System.out.println(garen.copyright);

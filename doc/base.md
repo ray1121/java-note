@@ -145,6 +145,13 @@ Java 8种基本类型：整形4种，浮点2种，布尔，字符`char`
 
 面对什么时候设计成类方法（属性）的时候都是看方法中是否涉及到对象的个性化属性的原则进行涉及，没有的就能够用static修饰成类方法。
 
+* **final**
+    * 使用`final`修饰类、方法、基本类型变量、引用类型是表现不同
+        * 修饰 **类** 的时候，表示这个类 **不能被继承**
+        * 修饰 **方法** 的时候，表示这个方法 **不能被重写**
+        * 修饰 **基本类型** 的时候，表示这个变量 **只能进行一次赋值**
+        * 修饰 **引用** 的时候，表示这个引用 **只能指向一次对象**
+
 ```java
 package charactor;
  
@@ -347,6 +354,29 @@ public class Hero {
      
 }
 ```
+
+### 数组
+
+* 声明：`int[] a= new int[5]`
+* 声明同时赋值：
+    * `int[] a= new int[]{1,2,3,4,5,6}`
+    * `int[] a = {1,2,3,4}`
+    * 声明给定了长度之后就不能越界赋值
+* **数组的长度一旦分配好，既不能增加也不能减少**
+* **二维数组可以先只定义高度**
+* **二维数组在访问前必须先设置长度**
+
+#### Arrays 工具类
+
+```java
+import java.util.Arrays;
+int[] b = Arrays.copyOfRange(a, 0, 3);//按照范围拷贝数组
+```
+* **数组是引用类型，直接打印无法观察：**`Arrays.toString(a)`**转化成字符串就可以观察到数组的内容了**
+* `Arrays.sort()`
+* `Arrays.binarySearch(a, 62)`查询元素出现的位置，**进行二分前必须先进行排序**
+* `Arrays.equals(a, b)`判断两个数组是否相同
+* `Arrays.fill(a, 5);`**使用同一个值填充整个数组。**
 
 
 ### 单例模式
@@ -557,6 +587,39 @@ public class Hero {
 
 在外部调用attack方法的时候，就需要进行捕捉，并且捕捉的时候，**可以通过e.getMessage() 获取当时出错的具体原因**
 
+### 抽象类与接口
+
+**在一个类中定义一个使用关键字 abstract 修饰的没有方法体的方法，那么这个类必须要被abstract修饰及抽象类**
+* 抽象类对继承他的子类要求是 **必须实现他的抽象方法**
+* 抽象类中可以没有抽象方法
+* 一个类被声明成抽象类了之后就不能直接被实例化
+
+```java
+
+public abstract class Hero {
+    String name;
+ 
+    float hp;
+ 
+    float armor;
+
+    int moveSpeed;
+ 
+    public static void main(String[] args) {
+ 
+    }
+ 
+    // 抽象方法attack
+    // Hero的子类会被要求实现attack方法
+    public abstract void attack();
+ 
+}
+```
+
+
+**抽象类与接口的**
+
+
 ### I/O
 
 * 文件对象
@@ -572,3 +635,4 @@ public class Hero {
     * 文件流：
         * `import java.io.FileInputStream;`
         * `FileInputStream fis = new FileInputStream(f);`输入输出（OutputStream）流
+        * 
